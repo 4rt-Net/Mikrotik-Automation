@@ -1,9 +1,9 @@
 # Mikrotik-Automation
 Small tool to automate checks and changes on Mikrotik routers. 
 
-[Usage]:
-python SwissTik.py [-h] HELP
--u | --username USERNAME
+[Usage]:<br />
+python SwissTik.py [-h] HELP<br />
+-u | --username USERNAME<br />
 -p | --password PASSWORD
 -t | --target TARGET
 -r | --radioname RADIONAME
