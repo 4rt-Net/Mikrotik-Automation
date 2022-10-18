@@ -55,16 +55,18 @@ help="specify radio-name for wlan1 interface"
 	)
 
 def MacRegex():
+	macregex = "([0-9a-fA-F]{2}:){5}[1-9a-fA-F]{2}"
 	file = open('temp-maccheck.txt', 'r')
 	for lines in file:
-   	 matches = re.search('(?:[0-9a-fA-F]:?){12}', lines)
+   	 matches = re.search(macregex, lines)
    	 if matches != None:
    	   print(matches.group())
 
 def ScanlistRegex():
+	scanregex = "scan-list=\d{4}-\d{4}"
 	file = open('temp-scanlist.txt', 'r')
 	for lines in file:
-   	 matches = re.search('scan-list=\d{4}-\d{4}', lines)
+   	 matches = re.search(scanregex, lines)
    	 if matches != None:
    	   print(matches.group())
 
