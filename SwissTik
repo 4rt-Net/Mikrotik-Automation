@@ -75,6 +75,7 @@ def main(args):
 			client = paramiko.SSHClient()
 			client.set_missing_host_key_policy(paramiko.AutoAddPolicy)
 			client.connect(hostname = args.target , port='22', username= args.username ,password= args.password ,look_for_keys=False)
+			print("Connected to: "+(args.target))
 			stdin,stdout,stderr = client.exec_command('/interface wireless print')
 			output_read = stdout.readlines()
 			file=open('temp-maccheck.txt','w')
@@ -83,6 +84,7 @@ def main(args):
 			stdin,stdout,stderr.flush()
 		except:
 			print("# Connection failed to: ", args.target)
+			print("check that the port 22 is open on the target")
 		finally:
 			client.close()
 			MacRegex()
@@ -93,6 +95,7 @@ def main(args):
 			client = paramiko.SSHClient()
 			client.set_missing_host_key_policy(paramiko.AutoAddPolicy)
 			client.connect(hostname = args.target , port='22', username= args.username ,password= args.password ,look_for_keys=False)
+			print("Connected to: "+(args.target))
 			stdin,stdout,stderr = client.exec_command('/interface wireless print')
 			output_read = stdout.readlines()
 			file=open('temp-scanlist.txt', 'w')
@@ -101,6 +104,7 @@ def main(args):
 			stdin,stdout,stderr.flush()
 		except:
 			print("# Connection failed to: ", args.target)
+			print("check that the port 22 is open on the target")
 		finally:
 			client.close()
 			ScanlistRegex()
@@ -111,12 +115,14 @@ def main(args):
 			client = paramiko.SSHClient()
 			client.set_missing_host_key_policy(paramiko.AutoAddPolicy)
 			client.connect(hostname = args.target , port='22', username= args.username ,password= args.password ,look_for_keys=False)
+			print("Connected to: "+(args.target))
 			stdin,stdout,stderr = client.exec_command('/system identity print')
 			output_read = stdout.readlines()
 			print(output_read)
 			stdin,stdout,stderr.flush()
 		except:
 			print("# Connection failed to: ", args.target)
+			print("check that the port 22 is open on the target")
 		finally:
 			client.close()
 
@@ -125,14 +131,15 @@ def main(args):
 			client = paramiko.SSHClient()
 			client.set_missing_host_key_policy(paramiko.AutoAddPolicy)
 			client.connect(hostname = args.target , port='22', username= args.username ,password= args.password ,look_for_keys=False)
+			print("Connected to: "+(args.target))
 			stdin,stdout,stderr = client.exec_command('/interface wireless set wlan1 radio-name='+str(args.radioname))
-			output_read = stdout.readlines()
-			client.close()
-			print("closing ssh connection...")
-			stdin,stdout,stderr.flush()
 			print("Unit is reconnecting, radio-name changed to:"+str(args.radioname))
+			print("closing ssh connection...")
+			client.close()
+			stdin,stdout,stderr.flush()
 		except:
 			print("# Connection failed to: ", args.target)
+			print("check that the port 22 is open on the target")
 
 	elif args.command == "create-ssl":
 		try:
@@ -154,6 +161,7 @@ def main(args):
 			stdin,stdout,stderr.flush()
 		except:
 			print("# Connection failed to: ", args.target)
+			print("check that the port 22 is open on the target")
 
 if __name__ == "__main__":
 	main(parser.parse_args())
