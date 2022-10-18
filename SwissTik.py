@@ -4,7 +4,7 @@ import re
 import time
 from time import sleep
 
-parser = argparse.ArgumentParser(description='\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Created by Art-Net ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nThe lazy-admin tool to quickly and easily perform functions on RouterOS.\nSpecifically created to save you time and sanity while changing settings remotely.\n\nThis tool uses SSH to open a connection to the target\nDue to SSH being used this tool is sensitive to ssh configuration:\nrequirements: port 22 needs to be open on RouterOS\n\nSpecial thanks to:\nRextended - for his RegEx solution\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~', formatter_class=argparse.RawTextHelpFormatter)
+parser = argparse.ArgumentParser(description='\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Created by Art-Net ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nThe lazy-admin tool to quickly and easily perform functions on RouterOS.\nSpecifically created to save you time and sanity while changing settings remotely.\n\nThis tool uses SSH to open a connection to the target\nDue to SSH being used this tool is sensitive to ssh configuration:\nrequirements: port 22 needs to be open on RouterOS\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~', formatter_class=argparse.RawTextHelpFormatter)
 
 parser.add_argument(
 "--command",
@@ -127,8 +127,7 @@ def main(args):
 			print("check that the port 22 is open on the target")
 		finally:
 			client.close()
-	
-	#Change radio-name of wlan1 on unit
+
 	elif args.command == "change-radioname":
 		try:
 			client = paramiko.SSHClient()
@@ -144,7 +143,6 @@ def main(args):
 			print("# Connection failed to: ", args.target)
 			print("check that the port 22 is open on the target")
 
-	#Create, sign and assign ssl certificate to api-ssl
 	elif args.command == "create-ssl":
 		try:
 			client = paramiko.SSHClient()
@@ -154,13 +152,13 @@ def main(args):
 			print("Creating SSL Certificate...")
 			stdin,stdout,stderr = client.exec_command('/certificate add name='+(args.ssl)+' common-name='+(args.ssl)+' key-usage=key-cert-sign,crl-sign key-size=2048 trusted=yes days-valid=1175')
 			print("Done")
-			#stdin,stdout,stderr = client.exec_command('/certificate sign # name='+(args.ssl)+' ca-crl-host='+str(args.target))
-			#print("Signing certificate, please wait...")
-			#time.sleep(20)
-			#print("Done")
-			#print("Assigning certificate to API-SSL service...")
-			#stdin,stdout,stderr = client.exec_command('/ip service set api-ssl certificate='+(args.ssl))
-			#print("SSL Certificate completed!")
+			stdin,stdout,stderr = client.exec_command(('/certificate sign '+(args.ssl)+' name='+(args.ssl)+' ca-crl-host='+(args.target)))
+			print("Signing certificate, please wait...")
+			time.sleep(20)
+			print("Done")
+			print("Assigning certificate to API-SSL service...")
+			stdin,stdout,stderr = client.exec_command('/ip service set api-ssl certificate='+(args.ssl))
+			print("SSL Certificate completed!")
 			client.close()
 			stdin,stdout,stderr.flush()
 		except:
