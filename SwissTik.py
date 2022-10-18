@@ -125,7 +125,8 @@ def main(args):
 			print("check that the port 22 is open on the target")
 		finally:
 			client.close()
-
+	
+	#Change radio-name of wlan1 on unit
 	elif args.command == "change-radioname":
 		try:
 			client = paramiko.SSHClient()
@@ -141,6 +142,7 @@ def main(args):
 			print("# Connection failed to: ", args.target)
 			print("check that the port 22 is open on the target")
 
+	#Create, sign and assign ssl certificate to api-ssl
 	elif args.command == "create-ssl":
 		try:
 			client = paramiko.SSHClient()
