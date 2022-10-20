@@ -8,7 +8,7 @@ python SwissTik.py [-h] HELP<br />
 -t | --target TARGET<br />
 -r | --radioname RADIONAME<br />
 -c | --command COMMAND<br />
--s | --ssl<br />
+-s | --ssl SSL-NAME<br />
 <br />
 <br />
 Available commands: <br />
