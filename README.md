@@ -1,21 +1,21 @@
 # Mikrotik-Automation
-Small tool to automate checks and changes on Mikrotik routers. 
+Automate checks and changes on Mikrotik routers.
 
 [Usage]:<br />
-python SwissTik.py [-h] HELP<br />
--u | --username USERNAME<br />
--p | --password PASSWORD<br />
--t | --target TARGET<br />
--r | --radioname RADIONAME<br />
--c | --command COMMAND<br />
--s | --ssl SSL-NAME<br />
+python SwissTik.py [-h]<br />
+-u | --username<br />
+-p | --password<br />
+-t | --target<br />
+-r | --radioname<br />
+-c | --command<br />
+-s | --ssl<br />
 <br />
 <br />
-Available commands: <br />
+Available commands for -c switch: <br />
 check-mac = returns the MAC address of wlan1<br />
 check-identity = returns the system identity<br />
 check-scanlist = returns the scan-list of wlan1<br />
-change-radioname = changes the radioname (needs to be used with [--radioname])<br />
+change-radioname = changes the radioname (needs to be used in conjunction with [--radioname])<br />
 create-ssl = create, sign and assign a ssl certificate to api-ssl<br />
 <br />
 <br />
