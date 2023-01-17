@@ -4,7 +4,7 @@ import re
 import time
 from time import sleep
 
-parser = argparse.ArgumentParser(description='\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Created by Art-Net ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\nThe lazy-admin tool to quickly and easily perform functions on RouterOS.\nSpecifically created to save you time and sanity while changing settings remotely.\n\nThis tool uses SSH to open a connection to the target\nDue to SSH being used this tool is sensitive to ssh configuration:\nrequirements: port 22 needs to be open on RouterOS\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~', formatter_class=argparse.RawTextHelpFormatter)
+parser = argparse.ArgumentParser(description='\nThe ideal tool for the lazy Admin\n\nAssists in changing or checking common configurations within seconds without the need to manually log in.\n\nThis tool uses SSH to open a connection to the target device\nDue to SSH being used this tool is sensitive to ssh configuration - if the connection fails please check "/ip services" & firewalls on your Mikrotik device.\n\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~', formatter_class=argparse.RawTextHelpFormatter)
 
 parser.add_argument(
 "--command",
